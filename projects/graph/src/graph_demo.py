@@ -5,9 +5,7 @@ Demonstration of Graph functionality.
 """
 
 from sys import argv
-
 from graph import Graph
-
 
 def main():
     graph = Graph()  # Instantiate your graph
