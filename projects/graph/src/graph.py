@@ -105,23 +105,23 @@ class Graph:
     def __init__(self, vertices={}):
         self.vertices = vertices
 
-    def add_vertex(self, verNum):
-        self.vertices[verNum] = set()
+    def add_vertex(self, vertNum):
+        self.vertices[vertNum] = set()
 
-    def add_edge(self, ver1, ver2):
-        if ver1 not in self.vertices: # Stretch, O(1)
-            raise ValueError("No %s vertex" % (ver1))
-        elif ver2 not in self.vertices: # Stretch, O(1)
-            raise ValueError("No %s vertex" % (ver2))
-        self.vertices[ver1].add(ver2)
-        self.vertices[ver2].add(ver1)
+    def add_edge(self, vert1, vert2):
+        if vert1 not in self.vertices: # Stretch, O(1)
+            raise ValueError("No %s vertex" % (vert1))
+        elif vert2 not in self.vertices: # Stretch, O(1)
+            raise ValueError("No %s vertex" % (vert2))
+        self.vertices[vert1].add(vert2)
+        self.vertices[vert2].add(vert1)
 
-    def add_directed_edge(self, verNum, edgeNum):
-        if verNum not in self.vertices: # Stretch, O(1)
-            raise ValueError("No %s vertex" % (verNum))
+    def add_directed_edge(self, vertNum, edgeNum):
+        if vertNum not in self.vertices: # Stretch, O(1)
+            raise ValueError("No %s vertex" % (vertNum))
         elif edgeNum not in self.vertices: # Stretch, O(1)
             raise ValueError("No %s vertex" % (edgeNum))
-        self.vertices[verNum].add(edgeNum)
+        self.vertices[vertNum].add(edgeNum)
 
     # Part 2
     def bft_queue(self, startVer):
@@ -194,7 +194,7 @@ class Graph:
                     # enqueue the new path
                     q.enqueue(path)
 
-        return f"vert {target_vert} not found in graph"
+        return "vertex %s not found in graph" % (target_vert)
 
     # Part 5
     def dfs(self, starting_vert_id, target_vert):
@@ -227,4 +227,4 @@ class Graph:
                     # enqueue the new path
                     s.push(path)
 
-        return f"vert {target_vert} not found in graph"
+        return "vertex %s not found in graph" % (target_vert)
