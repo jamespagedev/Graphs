@@ -128,6 +128,7 @@ class Graph:
 
     # Part 2
     def bft_q(self, start_vert):
+        print("bft_q:")
         q = Queue()
         q.enqueue(start_vert)
 
@@ -137,12 +138,15 @@ class Graph:
             vert = q.dequeue()
 
             if vert not in visited:
+                print(vert)
                 visited.add(vert)
                 for next_vert in self.vertices[vert]:
                     q.enqueue(next_vert)
+        print # new line
 
     # Part 3
     def dft_s(self, start_vert):
+        print("dft_s:")
         s = Stack()
         s.push(start_vert)
 
@@ -152,23 +156,29 @@ class Graph:
             vert = s.pop()
 
             if vert not in visited:
+                print(vert)
                 visited.add(vert)
                 for next_vert in self.vertices[vert]:
                     s.push(next_vert)
+        print # new line
 
     # Part 3.5
     def dft_r(self, starting_vertex_id, visited=None):
         # Instructions from Q&A...
         # check if the starting vertex has been visited
         if visited is None:
+            print("dft_r:")
             visited = set()
+            self.dft_r(starting_vertex_id, visited)
         else:
             # if not...
+            print(starting_vertex_id)
             # mark starting vertex as visited
             visited.add(starting_vertex_id)
             # call dft_r() on each of the neighbors
             for neighbor_vert in self.vertices[starting_vertex_id]:
-                self.dft_r(neighbor_vert, visited)
+                if neighbor_vert not in visited:
+                    self.dft_r(neighbor_vert, visited)
 
     # Part 4
     def bfs(self, starting_vert_id, target_vert):
