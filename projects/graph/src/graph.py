@@ -2,7 +2,7 @@
 Simple graph implementation
 """
 #=============================================================================
-""" BFS pseudocode (From Project Objectives)
+""" BFS pseudocode (From Project Objectives and Training Kit... old code not working)
 BFS(graph, startVert):
     for v of graph.vertexes:
         v.color = white
@@ -22,7 +22,7 @@ BFS(graph, startVert):
         u.color = black
 """
 #-----------------------------------------------------------------------------
-""" DFS Recursion pseudocode (From Project Objectives)
+""" DFS Recursion pseudocode (From Project Objectives and Training Kit... old code not working)
 explore(graph) {
     visit(this_vert);
     explore(remaining_graph);
