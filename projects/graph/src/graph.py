@@ -194,7 +194,7 @@ class Graph:
                 # put [A PATH TO] all of its neighbors in the back of the queue
                 for neighbor_vert in self.vertices[q_in_check[-1]]:
                     # copy the path
-                    path = q_in_check
+                    path = q_in_check[:] # by value, not be reference
                     # append the neighbor vertex to the path
                     path.append(neighbor_vert)
                     # enqueue the new path
@@ -227,7 +227,7 @@ class Graph:
                 # put [A PATH TO] all of its neighbors in the back of the stack
                 for neighbor_vert in self.vertices[s_in_check[-1]]:
                     # copy the path
-                    path = s_in_check
+                    path = s_in_check[:] # by value, not be reference
                     # append the neighbor vertex to the path
                     path.append(neighbor_vert)
                     # enqueue the new path

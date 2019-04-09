@@ -67,7 +67,7 @@ class GraphTests(unittest.TestCase):
         self.graph.add_directed_edge('6', '3')
         self.graph.add_directed_edge('7', '1')
         self.graph.add_directed_edge('7', '6')
-        print("bfs = %s" % (self.graph.bfs('1', '6'))) # should be ['1', '2', '4', '6']
+        self.assertEqual(self.graph.bfs('1', '6'), ['1', '2', '4', '6'])
 
     def test_dfs_graph(self):
         self.graph.add_vertex('1')
@@ -105,7 +105,7 @@ class GraphTests(unittest.TestCase):
         self.graph.add_directed_edge('6', '3')
         self.graph.add_directed_edge('7', '1')
         self.graph.add_directed_edge('7', '6')
-        print("dfs = %s" % (self.graph.dfs('1', '6'))) # not sure about random path... but shouldn't include vertexes out of path
+        self.assertEqual(self.graph.dfs('1', '6'), ['1', '2', '5', '6'])
 
 if __name__ == '__main__':
     unittest.main()
