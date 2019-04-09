@@ -105,6 +105,9 @@ class Graph:
     def __init__(self, vertices={}):
         self.vertices = vertices
 
+    def __str__(self):
+        return str(self.vertices)
+
     def add_vertex(self, vertNum):
         self.vertices[vertNum] = set()
 
@@ -124,9 +127,9 @@ class Graph:
         self.vertices[vertNum].add(edgeNum)
 
     # Part 2
-    def bft_queue(self, startVer):
+    def bft_q(self, start_vert):
         q = Queue()
-        q.enqueue(startVer)
+        q.enqueue(start_vert)
 
         visited = set()
 
@@ -139,9 +142,9 @@ class Graph:
                     q.enqueue(next_vert)
 
     # Part 3
-    def dft_stack(self, startVer):
+    def dft_s(self, start_vert):
         s = Stack()
-        s.push(startVer)
+        s.push(start_vert)
 
         visited = set()
 
@@ -154,15 +157,18 @@ class Graph:
                     s.push(next_vert)
 
     # Part 3.5
-    def dft_recursion(self, vert, visited=set()):
-        # No instruction given
-        visited.add(vert)
-
-        for neighbor_vert in self.vertices[vert]:
-            if neighbor_vert not in visited:
-                self.dft_recursion(neighbor_vert, visited)
-
-        return visited
+    def dft_r(self, starting_vertex_id, visited=None):
+        # Instructions from Q&A...
+        # check if the starting vertex has been visited
+        if visited is None:
+            visited = set()
+        else:
+            # if not...
+            # mark starting vertex as visited
+            visited.add(starting_vertex_id)
+            # call dft_r() on each of the neighbors
+            for neighbor_vert in self.vertices[starting_vertex_id]:
+                self.dft_r(neighbor_vert, visited)
 
     # Part 4
     def bfs(self, starting_vert_id, target_vert):
