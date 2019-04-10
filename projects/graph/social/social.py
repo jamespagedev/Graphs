@@ -69,6 +69,9 @@ class SocialGraph:
             self.add_friendship(friendship[0], friendship[1])
 
     def get_all_social_paths(self, user_id):
+        # Logic was pulled from my graph.py bfs
+        # The only thing I had to remove was the if/return...
+        #    because we are storing every path visited, and returning the dictionary of {user: [friendship_path]}'s
         """
         Takes a user's user_id as an argument
 
@@ -77,29 +80,14 @@ class SocialGraph:
 
         The key is the friend's ID and the value is the path.
         """
-        pass
-
-        # !!!! IMPLEMENT ME
-        # for u_id in range(user_id, self.friendships)
-
-"""
-    def get_all_social_paths(self, user_id):
-        \"""
-        Takes a user's user_id as an argument
-
-        Returns a dictionary containing every user in that user's
-        extended network with the shortest friendship path between them.
-
-        The key is the friend's ID and the value is the path.
-        \"""
 
         # !!!! IMPLEMENT ME
         # create empty queue
         q = Queue()
         # create a visited set
-        visited = {}  # Note that this is a dictionary, not a set
+        visited = {}  # Note that this is a dictionary, not a set... which allows us to reach the stretch of O(n) solution
         # enqueue [A PATH TO] the starting vertex to the queue
-        q.enqueue([starting_vert_id])
+        q.enqueue([user_id])
         # while the queue is not empty...
         while q.len() > 0:
             # dequeue the first [PATH] from the queue
@@ -107,25 +95,23 @@ class SocialGraph:
             # pull the last vertex from the path
             # check if it's visited...
             if q_in_check[-1] not in visited:
-                # mark it as visited
-                visited.add(q_in_check[-1])
-                # check if it's equal to the target vertex, if so return the path
-                if q_in_check[-1] == target_vert:
-                    return q_in_check
-                # put [A PATH TO] all of its neighbors in the back of the queue
-                for neighbor_vert in self.vertices[q_in_check[-1]]:
+                # mark it as visited and store queue as value
+                visited[q_in_check[-1]] = q_in_check
+                # put [A PATH TO] all of its friends in the back of the queue
+                for friendship in self.friendships[q_in_check[-1]]:
                     # copy the path
                     path = q_in_check[:] # by value, not be reference
                     # append the neighbor vertex to the path
-                    path.append(neighbor_vert)
+                    path.append(friendship)
                     # enqueue the new path
                     q.enqueue(path)
         return visited
-"""
 
-# if __name__ == '__main__':
-#     sg = SocialGraph()
-#     sg.populate_graph(10, 2)
-#     print(sg.friendships)
-#     connections = sg.get_all_social_paths(1) # something like {0: set([1,2]), 1: set([0, 4])... 9: set([3,6])} random every time
-#     print(connections)
+if __name__ == '__main__':
+    sg = SocialGraph()
+    # sg.populate_graph(10, 2) # Original
+    # sg.populate_graph(100, 10) # Used to test question 1
+    sg.populate_graph(1000, 5) # Used to test question 2
+    print(sg.friendships)
+    connections = sg.get_all_social_paths(1)
+    print(connections)
