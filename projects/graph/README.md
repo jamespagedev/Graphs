@@ -120,9 +120,15 @@ Note that in this sample, Users 3, 4 and 9 are not in User 1's extended social n
 ## 3. Questions
 
 1. To create 100 users with an average of 10 friends each, how many times would you need to call `addFriendship()`? Why?
+* 500 times
+* Because the amount of loops to call this method is set to a range of (100 * 10) // 2... which comes to 500
 
 2. If you create 1000 users with an average of 5 random friends each, what percentage of other users will be in a particular user's extended social network? What is the average degree of separation between a user and those in his/her extended network?
-
+* Because the relationships are random every time... the percentage of other users in the extended social network will be different every time. Some groups will be isolated from the particular user, and the amount of these groups change depending on the random used.
+* If by "average degree of seperation between the user and those in his/her extended network":
+  * You mean the amount of direct friendship path connected to the user, the average seems to be the same number as avg_friendships
+  * You mean the amount of key/value pairs in visited... again, it's random based on the relationships made
+  * Anything else... I don't understand the question
 
 
 ## 4. Stretch Goal
